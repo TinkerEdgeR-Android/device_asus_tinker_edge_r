@@ -1,11 +1,12 @@
 #!/bin/bash
 usage()
 {
-    echo "USAGE: [-o] [-u] [-v VERSION_NAME]"
+    echo "USAGE: [-o] [-u] [-v VERSION_NAME] [-n BUILD_NUMBER]"
     echo "No ARGS means use default build option"
     echo "WHERE: -o = generate ota package       "
     echo "       -u = generate update.img        "
     echo "       -v = set build version name for output image folder"
+    echo "       -n = set build number"
     exit 1
 }
 
@@ -14,7 +15,7 @@ BUILD_OTA=false
 BUILD_VERSION="IMAGES"
 
 # check pass argument
-while getopts "ouv:" arg
+while getopts "ouvn:" arg
 do
     case $arg in
         o)
@@ -27,6 +28,9 @@ do
             ;;
         v)
             BUILD_VERSION=$OPTARG
+            ;;
+        n)
+            BUILD_NUMBER=$OPTARG
             ;;
         ?)
             usage ;;
