@@ -62,8 +62,8 @@ $(call inherit-product, device/rockchip/rk3399pro/device.mk)
 #    android.hardware.camera.provider@2.4-external-service
 #endif
 
-#PRODUCT_COPY_FILES += \
-#    $(LOCAL_PATH)/init.rk3399pro.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.rk3399pro.rc \
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/init.tinker_edge_r.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.tinker_edge_r.rc
 #    $(LOCAL_PATH)/init.rk30board.usb.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.rk30board.usb.rc \
 #    $(LOCAL_PATH)/wake_lock_filter.xml:system/etc/wake_lock_filter.xml \
 #    device/rockchip/rk3399pro/package_performance.xml:$(TARGET_COPY_OUT_OEM)/etc/package_performance.xml \
