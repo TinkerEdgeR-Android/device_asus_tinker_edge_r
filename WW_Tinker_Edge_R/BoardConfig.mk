@@ -15,126 +15,124 @@
 #
 
 # Use the non-open-source parts, if they're present
-#-include vendor/rockchip/rk3399pro/BoardConfigVendor.mk
-#-include device/rockchip/common/BoardConfig.mk
+-include vendor/rockchip/rk3399pro/BoardConfigVendor.mk
+-include device/rockchip/common/BoardConfig.mk
 
-#TARGET_ARCH := arm64
-#TARGET_ARCH_VARIANT := armv8-a
-#TARGET_CPU_ABI := arm64-v8a
-#TARGET_CPU_ABI2 :=
-#TARGET_CPU_VARIANT := cortex-a53
-#TARGET_CPU_SMP := true
+TARGET_ARCH := arm64
+TARGET_ARCH_VARIANT := armv8-a
+TARGET_CPU_ABI := arm64-v8a
+TARGET_CPU_ABI2 :=
+TARGET_CPU_VARIANT := cortex-a53
+TARGET_CPU_SMP := true
 
-#TARGET_2ND_ARCH := arm
-#TARGET_2ND_ARCH_VARIANT := armv7-a-neon
-#TARGET_2ND_CPU_ABI := armeabi-v7a
-#TARGET_2ND_CPU_ABI2 := armeabi
-#TARGET_2ND_CPU_VARIANT := cortex-a15
+TARGET_2ND_ARCH := arm
+TARGET_2ND_ARCH_VARIANT := armv7-a-neon
+TARGET_2ND_CPU_ABI := armeabi-v7a
+TARGET_2ND_CPU_ABI2 := armeabi
+TARGET_2ND_CPU_VARIANT := cortex-a15
 
-#TARGET_PREBUILT_KERNEL := kernel/arch/arm64/boot/Image
-#PRODUCT_PACKAGE_OVERLAYS += device/rockchip/rk3399pro/overlay
+TARGET_PREBUILT_KERNEL := kernel/arch/arm64/boot/Image
+PRODUCT_PACKAGE_OVERLAYS += device/rockchip/rk3399pro/overlay
 TARGET_BUILD_DTB ?= rk3399pro-tinker_edge_r-avb
 
-#BOARD_AVB_ENABLE := false
-#BOARD_CAMERA_SUPPORT_EXT := true
+BOARD_AVB_ENABLE := false
+BOARD_CAMERA_SUPPORT_EXT := true
 
 # Disable emulator for "make dist" until there is a 64-bit qemu kernel
-#BUILD_EMULATOR := false
+BUILD_EMULATOR := false
 
-#TARGET_BOARD_PLATFORM := rk3399pro
-#TARGET_BOARD_PLATFORM_GPU := mali-t860
-#BOARD_USE_DRM := true
+TARGET_BOARD_PLATFORM := rk3399pro
+TARGET_BOARD_PLATFORM_GPU := mali-t860
+BOARD_USE_DRM := true
 
 # RenderScript
 # OVERRIDE_RS_DRIVER := libnvRSDriver.so
-#BOARD_OVERRIDE_RS_CPU_VARIANT_32 := cortex-a53
-#BOARD_OVERRIDE_RS_CPU_VARIANT_64 := cortex-a53
+BOARD_OVERRIDE_RS_CPU_VARIANT_32 := cortex-a53
+BOARD_OVERRIDE_RS_CPU_VARIANT_64 := cortex-a53
 # DISABLE_RS_64_BIT_DRIVER := true
 
-#TARGET_USES_64_BIT_BCMDHD := true
-#TARGET_USES_64_BIT_BINDER := true
+TARGET_USES_64_BIT_BCMDHD := true
+TARGET_USES_64_BIT_BINDER := true
 # BOARD_USE_AFBC_LAYER := true
 
 # HACK: Build apps as 64b for volantis_64_only
-#ifneq (,$(filter ro.zygote=zygote64, $(PRODUCT_DEFAULT_PROPERTY_OVERRIDES)))
-#TARGET_PREFER_32_BIT_APPS :=
-#TARGET_SUPPORTS_64_BIT_APPS := true
-#endif
+ifneq (,$(filter ro.zygote=zygote64, $(PRODUCT_DEFAULT_PROPERTY_OVERRIDES)))
+TARGET_PREFER_32_BIT_APPS :=
+TARGET_SUPPORTS_64_BIT_APPS := true
+endif
 
 # Sensors
-#BOARD_SENSOR_ST := false
-#BOARD_SENSOR_MPU_VR := false
-#BOARD_SENSOR_MPU_PAD := true
+BOARD_SENSOR_ST := false
+BOARD_SENSOR_MPU_VR := false
+BOARD_SENSOR_MPU_PAD := true
 
-#BOARD_USES_GENERIC_INVENSENSE := false
+BOARD_USES_GENERIC_INVENSENSE := false
 
 # GPU MaliT860 support opengl aep
-#BOARD_OPENGL_AEP := true
+BOARD_OPENGL_AEP := true
 
-#ifneq ($(filter %box, $(TARGET_PRODUCT)), )
-#TARGET_BOARD_PLATFORM_PRODUCT ?= box
-#else
-# ifneq ($(filter %vr, $(TARGET_PRODUCT)), )
-#   TARGET_BOARD_PLATFORM_PRODUCT ?= vr
-#else
-#TARGET_BOARD_PLATFORM_PRODUCT ?= tablet
-#endif
-#endif
+ifneq ($(filter %box, $(TARGET_PRODUCT)), )
+TARGET_BOARD_PLATFORM_PRODUCT ?= box
+else
+ ifneq ($(filter %vr, $(TARGET_PRODUCT)), )
+   TARGET_BOARD_PLATFORM_PRODUCT ?= vr
+else
+TARGET_BOARD_PLATFORM_PRODUCT ?= tablet
+endif
+endif
 
-#ENABLE_CPUSETS := true
+ENABLE_CPUSETS := true
 
 # Enable Dex compile opt as default
-#WITH_DEXPREOPT := true
+WITH_DEXPREOPT := true
 
-#BOARD_NFC_SUPPORT := false
-#BOARD_HAS_GPS := false
+BOARD_NFC_SUPPORT := false
+BOARD_HAS_GPS := false
 
-#BOARD_GRAVITY_SENSOR_SUPPORT := true
-#BOARD_COMPASS_SENSOR_SUPPORT := false
-#BOARD_GYROSCOPE_SENSOR_SUPPORT := false
-#BOARD_PROXIMITY_SENSOR_SUPPORT := false
-#BOARD_LIGHT_SENSOR_SUPPORT := true
-#BOARD_PRESSURE_SENSOR_SUPPORT := false
-#BOARD_TEMPERATURE_SENSOR_SUPPORT := false
-#BOARD_USB_HOST_SUPPORT := true
+BOARD_GRAVITY_SENSOR_SUPPORT := true
+BOARD_COMPASS_SENSOR_SUPPORT := false
+BOARD_GYROSCOPE_SENSOR_SUPPORT := false
+BOARD_PROXIMITY_SENSOR_SUPPORT := false
+BOARD_LIGHT_SENSOR_SUPPORT := true
+BOARD_PRESSURE_SENSOR_SUPPORT := false
+BOARD_TEMPERATURE_SENSOR_SUPPORT := false
+BOARD_USB_HOST_SUPPORT := true
 
 #for optee support
-#PRODUCT_HAVE_OPTEE ?= true
-#BOARD_USE_SPARSE_SYSTEM_IMAGE := true
+PRODUCT_HAVE_OPTEE ?= true
+BOARD_USE_SPARSE_SYSTEM_IMAGE := true
 
 # Google Service and frp overlay
-#BUILD_WITH_GOOGLE_MARKET := false
-#BUILD_WITH_GOOGLE_MARKET_ALL := false
-#BUILD_WITH_GOOGLE_FRP := false
+BUILD_WITH_GOOGLE_MARKET := false
+BUILD_WITH_GOOGLE_MARKET_ALL := false
+BUILD_WITH_GOOGLE_FRP := false
 
 # Add widevine L3 support
-#BOARD_WIDEVINE_OEMCRYPTO_LEVEL := 3
+BOARD_WIDEVINE_OEMCRYPTO_LEVEL := 3
 
 # camera enable
-#BOARD_CAMERA_SUPPORT := true
-#ALLOW_MISSING_DEPENDENCIES=true
+BOARD_CAMERA_SUPPORT := true
+ALLOW_MISSING_DEPENDENCIES=true
 
 #Config omx to support codec type.
-#BOARD_SUPPORT_VP9 := true
-#BOARD_SUPPORT_VP6 := false
+BOARD_SUPPORT_VP9 := true
+BOARD_SUPPORT_VP6 := false
 
 #for camera autofocus support
-#CAMERA_SUPPORT_AUTOFOCUS=true
+CAMERA_SUPPORT_AUTOFOCUS=true
 
 # ANDROIDNN
-#BOARD_USE_ANDROIDNN := true
-#ifeq ($(strip $(BOARD_USE_ANDROIDNN)), true)
-#DEVICE_MANIFEST_FILE := device/rockchip/$(TARGET_BOARD_PLATFORM)/manifest_androidnn.xml
-#else
-#DEVICE_MANIFEST_FILE := device/rockchip/$(TARGET_BOARD_PLATFORM)/manifest.xml
-#endif
+BOARD_USE_ANDROIDNN := true
+ifeq ($(strip $(BOARD_USE_ANDROIDNN)), true)
+DEVICE_MANIFEST_FILE := device/rockchip/$(TARGET_BOARD_PLATFORM)/manifest_androidnn.xml
+else
+DEVICE_MANIFEST_FILE := device/rockchip/$(TARGET_BOARD_PLATFORM)/manifest.xml
+endif
 
 # ANDROID HDMI
-#BOARD_SHOW_HDMI_SETTING := true
-#ifeq ($(strip $(BOARD_SHOW_HDMI_SETTING)), true)
-#DEVICE_MANIFEST_FILE := device/rockchip/$(TARGET_BOARD_PLATFORM)/manifest_hdmi.xml
-#endif
+BOARD_SHOW_HDMI_SETTING := true
+ifeq ($(strip $(BOARD_SHOW_HDMI_SETTING)), true)
+DEVICE_MANIFEST_FILE := device/rockchip/$(TARGET_BOARD_PLATFORM)/manifest_hdmi.xml
+endif
 
-#SCAN_EXCLUDE_DIRS ?= npu
-
--include device/rockchip/rk3399pro/BoardConfig.mk
+SCAN_EXCLUDE_DIRS ?= npu
