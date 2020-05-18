@@ -32,6 +32,7 @@ TARGET_2ND_CPU_ABI2 := armeabi
 TARGET_2ND_CPU_VARIANT := cortex-a15
 
 TARGET_PREBUILT_KERNEL := kernel/arch/arm64/boot/Image
+PRODUCT_PACKAGE_OVERLAYS += device/asus/tinker_edge_r/overlay
 PRODUCT_PACKAGE_OVERLAYS += device/rockchip/rk3399pro/overlay
 TARGET_BUILD_DTB ?= rk3399pro-tinker_edge_r-avb
 
