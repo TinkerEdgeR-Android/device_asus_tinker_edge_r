@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 /*
-** Copyright 2009, The Android Open Source Project
+** Copyright 2012, The Android Open Source Project
 **
 ** Licensed under the Apache License, Version 2.0 (the "License");
 ** you may not use this file except in compliance with the License.
@@ -20,21 +20,21 @@
 <!-- These resources are around just to allow their values to be customized
      for different hardware and product builds. -->
 <resources>
-   <!-- The default tiles to display in QuickSettings -->
-    <string name="quick_settings_tiles_default" translatable="false">
-        wifi,bt,dnd,flashlight,battery,cell,airplane,cast
-    </string>
+    <!-- The maximum number of rows in the QuickSettings -->
+    <integer name="quick_settings_max_rows">4</integer>
 
-    <!-- Tiles native to System UI. Order should match "quick_settings_tiles_default" -->
-    <string name="quick_settings_tiles_stock" translatable="false">
-        wifi,cell,battery,dnd,flashlight,bt,airplane,location,hotspot,inversion,saver,work,cast,night
-    </string>
+    <!-- The number of columns that the top level tiles span in the QuickSettings -->
+    <integer name="quick_settings_user_time_settings_tile_span">1</integer>
 
-    <!-- The tiles to display in QuickSettings in retail mode -->
-    <string name="quick_settings_tiles_retail_mode" translatable="false">
-        cell,battery,dnd,flashlight,location
-    </string>
+    <!-- Set to true to enable the user switcher on the keyguard. -->
+    <bool name="config_keyguardUserSwitcher">true</bool>
 
     <!-- Nav bar button default ordering/layout -->
     <string name="config_navBarLayout" translatable="false">left;volume_sub,back,home,recent,volume_add,screenshot;right[.001W]</string>
+    <!-- Animation duration when using long press on recents to dock -->
+    <integer name="long_press_dock_anim_duration">290</integer>
+
+    <!-- orientation of the dead zone when touches have recently occurred elsewhere on screen -->
+    <integer name="navigation_bar_deadzone_orientation">0</integer>
+
 </resources>
