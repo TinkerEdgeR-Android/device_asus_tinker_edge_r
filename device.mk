@@ -117,6 +117,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PROPERTY_OVERRIDES += \
 		npu.inactivity.sleep.secs=15
 
+# Touch
+PRODUCT_COPY_FILES += \
+    device/asus/tinker_edge_r/touch/fts_ts.idc:system/usr/idc/fts_ts.idc
+
 #
 #add Rockchip properties here
 #
