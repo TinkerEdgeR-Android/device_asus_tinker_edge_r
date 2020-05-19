@@ -12,7 +12,11 @@ usage()
 
 BUILD_UPDATE_IMG=false
 BUILD_OTA=false
-BUILD_VERSION="IMAGES"
+#BUILD_VERSION="IMAGES"
+
+DATE=$(date  +%Y%m%d.%H%M)
+BUILD_NUMBER="ENG"."$DATE"
+BUILD_NUMBER_DESC=$BUILD_NUMBER
 
 # check pass argument
 while getopts "ouvn:" arg
@@ -27,10 +31,12 @@ do
             BUILD_UPDATE_IMG=true
             ;;
         v)
-            BUILD_VERSION=$OPTARG
+#            BUILD_VERSION=$OPTARG
             ;;
         n)
-            BUILD_NUMBER=$OPTARG
+            DATE=$(date  +%Y%m%d)
+            BUILD_NUMBER="$OPTARG"-"$DATE"
+            BUILD_NUMBER_DESC=V"$BUILD_NUMBER"
             ;;
         ?)
             usage ;;
@@ -56,10 +62,10 @@ export PROJECT_TOP=`gettop`
 
 #lunch $DEVICE-$BUILD_VARIANT
 
-PLATFORM_VERSION=`get_build_var PLATFORM_VERSION`
-DATE=$(date  +%Y%m%d.%H%M)
-STUB_PATH=Image/"$KERNEL_DTS"_"$PLATFORM_VERSION"_"$DATE"_RELEASE_TEST
-STUB_PATH="$(echo $STUB_PATH | tr '[:lower:]' '[:upper:]')"
+#PLATFORM_VERSION=`get_build_var PLATFORM_VERSION`
+#DATE=$(date  +%Y%m%d.%H%M)
+STUB_PATH=IMAGE/Tinker_Edge_R-Android9-"$BUILD_NUMBER_DESC"
+#STUB_PATH="$(echo $STUB_PATH | tr '[:lower:]' '[:upper:]')"
 export STUB_PATH=$PROJECT_TOP/$STUB_PATH
 export STUB_PATCH_PATH=$STUB_PATH/PATCHES
 
