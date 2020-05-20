@@ -5,9 +5,19 @@ on post-fs-data
 on early-init
 
 on init
+    # led
+    start vendor.led
 
 on boot
 
     # backlight
     chown system system /sys/class/backlight/panel_backlight-0/brightness
     chown system system /sys/class/backlight/panel_backlight-1/brightness
+
+# led
+service vendor.led /vendor/bin/led.sh
+    class main
+    user root
+    group root
+    disabled
+    oneshot

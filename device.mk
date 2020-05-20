@@ -121,6 +121,12 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_COPY_FILES += \
     device/asus/tinker_edge_r/touch/fts_ts.idc:system/usr/idc/fts_ts.idc
 
+# led
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/led/led.sh:$(TARGET_COPY_OUT_VENDOR)/bin/led.sh
+
+BOARD_SEPOLICY_DIRS += \
+    device/asus/tinker_edge_r/sepolicy/led
 #
 #add Rockchip properties here
 #
