@@ -133,7 +133,11 @@ endif
 # ANDROID HDMI
 BOARD_SHOW_HDMI_SETTING := true
 ifeq ($(strip $(BOARD_SHOW_HDMI_SETTING)), true)
+ifeq ($(strip $(BOARD_USE_ANDROIDNN)), true)
+DEVICE_MANIFEST_FILE := device/rockchip/$(TARGET_BOARD_PLATFORM)/manifest_hdminn.xml
+else
 DEVICE_MANIFEST_FILE := device/rockchip/$(TARGET_BOARD_PLATFORM)/manifest_hdmi.xml
+endif
 endif
 
 SCAN_EXCLUDE_DIRS ?= npu
