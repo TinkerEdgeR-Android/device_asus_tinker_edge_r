@@ -164,5 +164,5 @@ PRODUCT_PROPERTY_OVERRIDES += \
                 ro.kernel.android.checkjni=0 \
                 ro.build.shutdown_timeout=6 \
                 persist.enable_task_snapshots=false \
-                ro.product.version = v1.2.0 \
+                ro.product.version = v1.3.4 \
                 persist.sys.hdmi.cec_enable=true
