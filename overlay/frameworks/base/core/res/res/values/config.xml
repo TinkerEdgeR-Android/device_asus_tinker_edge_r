@@ -31,5 +31,6 @@
          still use the accelerometer to determine the orientation, such as when
          docked if the dock is configured to enable the accelerometer. -->
     <bool name="config_supportAutoRotation">false</bool>
+    <integer name="config_screenBrightnessSettingMinimum">15</integer>
 
 </resources>
