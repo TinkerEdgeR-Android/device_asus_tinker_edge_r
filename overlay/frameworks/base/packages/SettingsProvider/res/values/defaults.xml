@@ -17,4 +17,5 @@
 <resources>
     <bool name="def_accelerometer_rotation">false</bool>
     <integer name="def_screen_off_timeout">2147483647</integer>
+    <integer name="def_screen_brightness">210</integer>
 </resources>
