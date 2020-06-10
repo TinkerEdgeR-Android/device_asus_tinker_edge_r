@@ -127,6 +127,20 @@ PRODUCT_COPY_FILES += \
 
 BOARD_SEPOLICY_DIRS += \
     device/asus/tinker_edge_r/sepolicy/led
+
+# lte
+PRODUCT_PACKAGES += \
+    rild
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/lte/chat:system/bin/chat \
+    $(LOCAL_PATH)/lte/ip-down:system/etc/ppp/ip-down \
+    $(LOCAL_PATH)/lte/ip-up:system/etc/ppp/ip-up \
+    $(LOCAL_PATH)/lte/libreference-ril.so:vendor/lib64/libreference-ril.so
+
+BOARD_SEPOLICY_DIRS += \
+    device/asus/tinker_edge_r/sepolicy/lte
+
 #
 #add Rockchip properties here
 #
@@ -165,4 +179,5 @@ PRODUCT_PROPERTY_OVERRIDES += \
                 ro.build.shutdown_timeout=6 \
                 persist.enable_task_snapshots=false \
                 ro.product.version = v1.3.4 \
-                persist.sys.hdmi.cec_enable=true
+                persist.sys.hdmi.cec_enable=true \
+                ro.radio.noril=false 

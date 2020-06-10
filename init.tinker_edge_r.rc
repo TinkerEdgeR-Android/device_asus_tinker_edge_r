@@ -21,3 +21,10 @@ service vendor.led /vendor/bin/led.sh
     group root
     disabled
     oneshot
+
+# lte
+service vendor.ril-daemon /vendor/bin/hw/rild -l /vendor/lib64/libreference-ril.so
+    class main
+    user radio
+    group radio cache inet misc audio sdcard_rw log
+    capabilities BLOCK_SUSPEND NET_ADMIN NET_RAW

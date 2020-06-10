@@ -1,0 +1,6 @@
+/dev/ttyUSB[0-9]                  u:object_r:radio_device:s0
+/dev/ttyACM[0-9]                  u:object_r:radio_device:s0
+/dev/cdc-wdm[0-9]                 u:object_r:radio_device:s0
+/dev/qcqmi[0-9]                   u:object_r:radio_device:s0
+/vendor/bin/hw/rild               u:object_r:rild_exec:s0
+/dev/socket/rildOemHook           u:object_r:rild_socket:s0
