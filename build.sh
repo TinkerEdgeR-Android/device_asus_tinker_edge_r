@@ -1,10 +1,11 @@
 #!/bin/bash
 usage()
 {
-    echo "USAGE: [-o] [-u] [-v VERSION_NAME] [-n BUILD_NUMBER]"
+    echo "USAGE: [-o] [-u] [-r] [-v VERSION_NAME] [-n BUILD_NUMBER]"
     echo "No ARGS means use default build option"
     echo "WHERE: -o = generate ota package       "
     echo "       -u = generate update.img        "
+    echo "       -r = pack the release"
     echo "       -v = set build version name for output image folder"
     echo "       -n = set build number"
     exit 1
@@ -13,13 +14,13 @@ usage()
 BUILD_UPDATE_IMG=false
 BUILD_OTA=false
 #BUILD_VERSION="IMAGES"
+PACK_RELEASE=false
 
-DATE=$(date  +%Y%m%d.%H%M)
-BUILD_NUMBER="ENG"."$DATE"
-BUILD_NUMBER_DESC=$BUILD_NUMBER
+BUILD_NUMBER="eng"-"$USER"-"$(date  +%Y%m%d.%H%M)"
+RELEASE_NAME=Tinker_Edge_R-Android9-"$BUILD_NUMBER"
 
 # check pass argument
-while getopts "ouvn:" arg
+while getopts "ourvn:" arg
 do
     case $arg in
         o)
@@ -34,10 +35,13 @@ do
 #            BUILD_VERSION=$OPTARG
             ;;
         n)
-            DATE=$(date  +%Y%m%d)
-            BUILD_NUMBER="$OPTARG"-"$DATE"
-            BUILD_NUMBER_DESC=V"$BUILD_NUMBER"
+            BUILD_NUMBER="$OPTARG"-"$(date  +%Y%m%d)"
+            RELEASE_NAME=Tinker_Edge_R-Android9-V"$BUILD_NUMBER"
             ;;
+	r)
+            echo "will pack the release"
+	    PACK_RELEASE=true
+	    ;;
         ?)
             usage ;;
     esac
@@ -64,7 +68,7 @@ export PROJECT_TOP=`gettop`
 
 #PLATFORM_VERSION=`get_build_var PLATFORM_VERSION`
 #DATE=$(date  +%Y%m%d.%H%M)
-STUB_PATH=IMAGE/Tinker_Edge_R-Android9-"$BUILD_NUMBER_DESC"
+STUB_PATH=IMAGE/"$RELEASE_NAME"
 #STUB_PATH="$(echo $STUB_PATH | tr '[:lower:]' '[:upper:]')"
 export STUB_PATH=$PROJECT_TOP/$STUB_PATH
 export STUB_PATCH_PATH=$STUB_PATH/PATCHES
@@ -147,7 +151,7 @@ mkdir -p $STUB_PATH
 #.repo/repo/repo forall  -c '[ "$REPO_REMOTE" = "rk" ] && { REMOTE_DIFF=`git log $REPO_REMOTE/$REPO_RREV..HEAD`; LOCAL_DIFF=`git diff`; [ -n "$REMOTE_DIFF" ] && { mkdir -p $STUB_PATCH_PATH/$REPO_PATH/; git format-patch $REPO_REMOTE/$REPO_RREV..HEAD -o $STUB_PATCH_PATH/$REPO_PATH; git merge-base HEAD $REPO_REMOTE/$REPO_RREV | xargs git show -s > $STUB_PATCH_PATH/$REPO_PATH/git-merge-base.txt; } || :; [ -n "$LOCAL_DIFF" ] && { mkdir -p $STUB_PATCH_PATH/$REPO_PATH/; git reset HEAD ./; git diff > $STUB_PATCH_PATH/$REPO_PATH/local_diff.patch; } || :; }'
 
 #Copy stubs
-cp commit_id.xml $STUB_PATH/manifest_${DATE}.xml
+cp commit_id.xml $STUB_PATH/manifest_$RELEASE_NAME.xml
 
 mkdir -p $STUB_PATCH_PATH/kernel
 cp kernel/.config $STUB_PATCH_PATH/kernel
@@ -160,3 +164,14 @@ cp build.sh $STUB_PATH/build.sh
 echo "UBOOT:  defconfig: $UBOOT_DEFCONFIG" >> $STUB_PATH/build_cmd_info
 echo "KERNEL: defconfig: $KERNEL_DEFCONFIG, dts: $KERNEL_DTS" >> $STUB_PATH/build_cmd_info
 echo "ANDROID:$DEVICE-$BUILD_VARIANT" >> $STUB_PATH/build_cmd_info
+
+if [ "$PACK_RELEASE" = true ] ; then
+	mkdir mkdir -p $STUB_PATH/$RELEASE_NAME
+	mv $STUB_PATH/IMAGES/update.img $STUB_PATH/$RELEASE_NAME/.
+	cp -rp $PROJECT_TOP/device/asus/tinker_edge_r/flash/. $STUB_PATH/$RELEASE_NAME
+	cd $STUB_PATH
+	zip -r $RELEASE_NAME.zip $RELEASE_NAME
+	sha256sum $RELEASE_NAME.zip > $RELEASE_NAME.zip.sha256sum
+	cd -
+	rm -rf $STUB_PATH/$RELEASE_NAME
+fi
