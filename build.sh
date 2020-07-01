@@ -166,7 +166,7 @@ echo "KERNEL: defconfig: $KERNEL_DEFCONFIG, dts: $KERNEL_DTS" >> $STUB_PATH/buil
 echo "ANDROID:$DEVICE-$BUILD_VARIANT" >> $STUB_PATH/build_cmd_info
 
 if [ "$PACK_RELEASE" = true ] ; then
-	mkdir mkdir -p $STUB_PATH/$RELEASE_NAME
+	mkdir -p $STUB_PATH/$RELEASE_NAME
 	mv $STUB_PATH/IMAGES/update.img $STUB_PATH/$RELEASE_NAME/.
 	cp -rp $PROJECT_TOP/device/asus/tinker_edge_r/flash/. $STUB_PATH/$RELEASE_NAME
 	cd $STUB_PATH
