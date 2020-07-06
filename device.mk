@@ -180,4 +180,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
                 persist.enable_task_snapshots=false \
                 ro.product.version = v1.3.4 \
                 persist.sys.hdmi.cec_enable=true \
-                ro.radio.noril=false 
+                ro.radio.noril=false
+
+PRODUCT_PACKAGES += \
+    ASUSToolkit
