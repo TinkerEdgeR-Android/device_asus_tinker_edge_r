@@ -31,6 +31,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     hardware/rockchip/npu_powerctrl/npu_powerctrl.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/npu_powerctrl.rc
 
+#DMClient
+PRODUCT_PACKAGES += \
+    DMClient
+
 #enable this for support f2fs with data partion
 BOARD_USERDATAIMAGE_FILE_SYSTEM_TYPE := f2fs
 
