@@ -33,4 +33,9 @@
     <bool name="config_supportAutoRotation">false</bool>
     <integer name="config_screenBrightnessSettingMinimum">15</integer>
 
+    <string-array name="config_locationProviderPackageNames" translatable="false">
+        <!-- The standard AOSP fused location provider -->
+        <item>com.android.location.fused</item>
+        <item>com.android.location.network</item>  
+    </string-array>
 </resources>
