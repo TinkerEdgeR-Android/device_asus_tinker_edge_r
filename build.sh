@@ -120,7 +120,7 @@ if [ "$BUILD_OTA" = true ] ; then
     INTERNAL_OTA_PACKAGE_OBJ_TARGET=obj/PACKAGING/target_files_intermediates/$TARGET_PRODUCT-target_files-*.zip
     INTERNAL_OTA_PACKAGE_TARGET=$TARGET_PRODUCT-ota-*.zip
     echo "generate ota package"
-    make otapackage -j4
+    make BUILD_NUMBER=$BUILD_NUMBER otapackage -j4
     ./mkimage.sh ota
     cp $OUT/$INTERNAL_OTA_PACKAGE_TARGET $IMAGE_PATH/
     cp $OUT/$INTERNAL_OTA_PACKAGE_OBJ_TARGET $IMAGE_PATH/
