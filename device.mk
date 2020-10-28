@@ -70,7 +70,8 @@ PRODUCT_COPY_FILES += \
     device/rockchip/rk3399pro/init.rk30board.usb.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.rk30board.usb.rc \
     device/rockchip/rk3399pro/wake_lock_filter.xml:system/etc/wake_lock_filter.xml \
     device/rockchip/rk3399pro/package_performance.xml:$(TARGET_COPY_OUT_OEM)/etc/package_performance.xml \
-    device/rockchip/$(TARGET_BOARD_PLATFORM)/media_profiles_default.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles_V1_0.xml
+    device/rockchip/$(TARGET_BOARD_PLATFORM)/media_profiles_default.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles_V1_0.xml \
+    device/rockchip/$(TARGET_BOARD_PLATFORM)/media_profiles_imx219.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles_imx219.xml
 
 ifeq ($(strip $(BOARD_USE_ANDROIDNN)), true)
 # ARMNN
