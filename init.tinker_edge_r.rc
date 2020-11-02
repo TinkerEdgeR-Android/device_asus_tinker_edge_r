@@ -10,6 +10,8 @@ on init
 
 on boot
 
+    setprop vendor.asus_debugger_running 0
+
     # backlight
     chown system system /sys/class/backlight/panel_backlight-0/brightness
     chown system system /sys/class/backlight/panel_backlight-1/brightness
@@ -28,3 +30,33 @@ service vendor.ril-daemon /vendor/bin/hw/rild -l /vendor/lib64/libreference-ril.
     user radio
     group radio cache inet misc audio sdcard_rw log
     capabilities BLOCK_SUSPEND NET_ADMIN NET_RAW
+
+# asus-debugger-d
+service asus-dbug-d /vendor/bin/asus-debugger-d
+    user root
+    group root log
+    group root system
+    disabled
+
+on property:sys.asus_debugger_running=1
+	start asus-dbug-d
+
+on property:persist.sys.run_debugger=1
+	start asus-dbug-d
+	setprop vendor.run_debugger 1
+
+on property:persist.sys.run_debugger=0
+	setprop vendor.run_debugger 0
+
+on property:sys.asus_debugger_running=3
+	stop asus-dbug-d
+	setprop vendor.asus_debugger_running 3
+
+on prosperty:sys.asus_debugger_running=1
+	retorecon /dev/socket/asus-debugger
+
+on property:sys.asus_debugger_running=2
+	restorecon /dev/socket/asus-debugger
+
+on property:vendor.asus_debugger_running=2
+	setprop sys.asus_debugger_running 2

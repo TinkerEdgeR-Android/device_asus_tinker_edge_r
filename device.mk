@@ -188,9 +188,21 @@ PRODUCT_PROPERTY_OVERRIDES += \
                 ro.product.version = v1.3.4 \
                 persist.sys.hdmi.cec_enable=true \
                 ro.radio.noril=false \
-		vendor.hwc.device.primary=HDMI-A \
-		vendor.hwc.device.extend=DP \
-		persist.hdmi.ui.state=2
+                vendor.hwc.device.primary=HDMI-A \
+                vendor.hwc.device.extend=DP \
+                persist.hdmi.ui.state=2 \
+                ro.carrier=wifi-only
 
 PRODUCT_PACKAGES += \
     ASUSToolkit
+
+# AsusDebugger related packages
+PRODUCT_PACKAGES += \
+    asus-debugger-d \
+    klogger \
+    tcpdump2 \
+    AsusDebugger \
+    debugger_WifiOnly.conf
+
+BOARD_SEPOLICY_DIRS += \
+    device/asus/tinker_edge_r/sepolicy/AsusDebugger
